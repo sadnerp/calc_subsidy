@@ -26,11 +26,12 @@
 		<h1>Калькулятор субсидий <br><small>заполните информацию о составе семьи</small></h1>
 		
 		<form id="subs" action="" ng-controller="SettingsController">
+			<p>Среднедушевой доход вашей семьи составляет: <span ng-bind="average"></span> руб.</p>
 			<table class="table table-bordered text-center">
 				<tr>
 					<td rowspan="2"><span>Информация о составе семьи</span></td>
 					<td rowspan="2"><span>Статус гражданина</span></td>
-					<td style="max-width:1000px;width:1000px;" class="warning" colspan="7"><span>доход за пол года в рублях</span></td>
+					<td class="warning" colspan="7"><span>доход за пол года в рублях</span></td>
 				</tr>
 				<tr class="warning">
 					<td><span>1-ый месяц</span></td>
@@ -42,31 +43,32 @@
 					<td>x</td>
 				</tr>
 
-				<tr ng-repeat="contact in contacts">
-					<td><span>{{$index+1}}-ый член семьи</span></td>
+				<tr ng-repeat="people in peoples">
+					<td><span>{{$index+1}}-й член семьи</span></td>
 					<td>
-						<select class="form-control col-xs-12" ng-model="contact.type">
-							<option>phone</option>
-							<option>email</option>
+						<select class="form-control" ng-model="people.type">
+							<option value="meat">Работоспособный</option>
+							<option value="children">Ребенок</option>
+							<option value="cripple">Пенсионер</option>
+							<option value="cripple">Инвалид</option>
 						</select>
 					</td>
-					<td><input class="form-control" type="text" ng-model="contact.value"/></td>
-					<td><input class="form-control" type="text" ng-model="contact.value"/></td>
-					<td><input class="form-control" type="text" ng-model="contact.value"/></td>
-					<td><input class="form-control" type="text" ng-model="contact.value"/></td>
-					<td><input class="form-control" type="text" ng-model="contact.value"/></td>
-					<td><input class="form-control" type="text" ng-model="contact.value"/></td>
-					<td><a href="#" title="Удалить" ng-click="removeContact(contact)">X</a></td>
+					<td><input ng-change="change()" class="form-control" type="text" ng-model="people.income.month1"/></td>
+					<td><input ng-change="change()" class="form-control" type="text" ng-model="people.income.month2"/></td>
+					<td><input ng-change="change()" class="form-control" type="text" ng-model="people.income.month3"/></td>
+					<td><input ng-change="change()" class="form-control" type="text" ng-model="people.income.month4"/></td>
+					<td><input ng-change="change()" class="form-control" type="text" ng-model="people.income.month5"/></td>
+					<td><input ng-change="change()" class="form-control" type="text" ng-model="people.income.month6"/></td>
+					<td><a href="#" title="Удалить" ng-click="removeContact(people); change();">X</a></td>
 				</tr>
 
 			</table>
 			<p class="text-center">
-				<a class="btn btn-default btn-success" href="#" ng-click="addContact()">добавить человека</a>
-				<a class="btn btn-default" href="#" ng-click="clearContact()">сбросить</a>
+				<a class="btn btn-default btn-success" href="#" ng-click="addContact(); change();">добавить человека</a>
+				<a class="btn btn-default" href="#" ng-click="clearContact(); change()">сбросить</a>
 			</p>
 
-  Name: <input type="text" ng-model="name"/>
-  [ <a href="" ng-click="greet()">greet</a> ]<br/>
+
 		</form>
 
 	</div>
