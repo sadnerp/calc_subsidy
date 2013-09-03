@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="ru">
+<head>
+	<meta charset="UTF-8">
+	<title>calculate</title>
+	<link rel="stylesheet" href="css/bootstrap.min.css">
+	<link rel="stylesheet" href="css/custom.css">
+	<script src="js/angular.min.js"></script>
+	<script src="js/controller.js"></script>
+</head>
+<body>
+	<nav class="navbar navbar-inverse" role="navigation">
+		<div class="navbar-header">
+			<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+				<span class="sr-only">Toggle navigation</span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+			</button>
+			<a class="navbar-brand" href="#">mfc subsidies ©</a>
+		</div>
+		<div class="collapse navbar-collapse navbar-ex1-collapse"></div>
+	</nav>
+	<div class="container" ng-app>
+	<div class="row">
+		<h1>Калькулятор субсидий <br><small>заполните информацию о составе семьи</small></h1>
+		
+		<form id="subs" action="" ng-controller="SettingsController">
+			<table class="table table-bordered text-center">
+				<tr>
+					<td rowspan="2"><span>Информация о составе семьи</span></td>
+					<td rowspan="2"><span>Статус гражданина</span></td>
+					<td style="max-width:1000px;width:1000px;" class="warning" colspan="7"><span>доход за пол года в рублях</span></td>
+				</tr>
+				<tr class="warning">
+					<td><span>1-ый месяц</span></td>
+					<td><span>2-ой месяц</span></td>
+					<td><span>3-ий месяц</span></td>
+					<td><span>4-ый месяц</span></td>
+					<td><span>5-ый месяц</span></td>
+					<td><span>6-ой месяц</span></td>
+					<td>x</td>
+				</tr>
+
+				<tr ng-repeat="contact in contacts">
+					<td><span>{{$index+1}}-ый член семьи</span></td>
+					<td>
+						<select class="form-control col-xs-12" ng-model="contact.type">
+							<option>phone</option>
+							<option>email</option>
+						</select>
+					</td>
+					<td><input class="form-control" type="text" ng-model="contact.value"/></td>
+					<td><input class="form-control" type="text" ng-model="contact.value"/></td>
+					<td><input class="form-control" type="text" ng-model="contact.value"/></td>
+					<td><input class="form-control" type="text" ng-model="contact.value"/></td>
+					<td><input class="form-control" type="text" ng-model="contact.value"/></td>
+					<td><input class="form-control" type="text" ng-model="contact.value"/></td>
+					<td><a href="#" title="Удалить" ng-click="removeContact(contact)">X</a></td>
+				</tr>
+
+			</table>
+			<p class="text-center">
+				<a class="btn btn-default btn-success" href="#" ng-click="addContact()">добавить человека</a>
+				<a class="btn btn-default" href="#" ng-click="clearContact()">сбросить</a>
+			</p>
+
+  Name: <input type="text" ng-model="name"/>
+  [ <a href="" ng-click="greet()">greet</a> ]<br/>
+		</form>
+
+	</div>
+	</div>
+</body>
+</html>
